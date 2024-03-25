@@ -13,8 +13,8 @@ class BookListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context)
-            .push(AppRouters.kBookDetailsView, extra: bookModel);
+        // GoRouter.of(context)
+        //     .push(AppRouters.kBookDetailsView, extra: bookModel);
         // GoRouter.of(context).pushNamed("/bookDetailsView",
         //     queryParams: {'bookModel': bookModel});
       },

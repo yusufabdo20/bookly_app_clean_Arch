@@ -22,7 +22,7 @@ class CustomAppBar extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              GoRouter.of(context).go(AppRouters.kSearchView);
+              // GoRouter.of(context).go(AppRouters.kSearchView);
             },
             icon: const Icon(FontAwesomeIcons.magnifyingGlass),
           ),

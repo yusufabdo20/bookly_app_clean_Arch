@@ -14,7 +14,7 @@ class VolumeInfo extends Equatable {
   final String? description;
   final List<IndustryIdentifier>? industryIdentifiers;
   final ReadingModes? readingModes;
-  final int? pageCount;
+  final num? pageCount;
   final String? printType;
   final List<String>? categories;
   final String? maturityRating;
@@ -26,8 +26,8 @@ class VolumeInfo extends Equatable {
   final String? previewLink;
   final String? infoLink;
   final String? canonicalVolumeLink;
-  var averageRating;
-  var ratingsCount;
+  final num? averageRating;
+  final num? ratingsCount;
 
   VolumeInfo({
     this.ratingsCount,
