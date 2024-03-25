@@ -8,7 +8,7 @@ import 'home_local_data_source.dart';
 class HomeLocalDataSourceImp extends HomeLocalDataSource {
   @override
   List<BookEntity> fetchFeaturedBooks() {
-    var box = Hive.box<BookEntity>(AssetsData.kBookEntityBox);
+    var box = Hive.box<BookEntity>(AssetsData.kFeturedBookEntityBox);
     List<BookEntity> localBooks = box.values.toList();
     return localBooks;
   }
@@ -18,6 +18,6 @@ class HomeLocalDataSourceImp extends HomeLocalDataSource {
     // var box = Hive.box<BookEntity>(AssetsData.kBookEntityBox);
     // List<BookEntity> localBooks = box.values.toList();
 
-    return CachHelper.getData<BookEntity>(boxName: AssetsData.kBookEntityBox);
+    return CachHelper.getData<BookEntity>(boxName: AssetsData.kNewestBookEntityBox);
   }
 }
