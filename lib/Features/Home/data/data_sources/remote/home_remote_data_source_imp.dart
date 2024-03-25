@@ -1,6 +1,8 @@
 import 'package:bookly_app/Features/Home/data/data_sources/remote/home_remote_data_source.dart';
 import 'package:bookly_app/Features/Home/domain/entities/book_entity.dart';
+import 'package:bookly_app/core/functions/saveDataList.dart';
 import 'package:bookly_app/core/utils/api_service.dart';
+import 'package:bookly_app/core/utils/assets.dart';
 
 import '../../models/book_model/book_model.dart';
 
@@ -13,13 +15,16 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks() async {
     var data = await apiService.get(endPoint: 'volumes?q=computer');
     List<BookEntity> bookEntities = getBookList(data);
+    saveListDataLocal(values: bookEntities, boxName: AssetsData.kBookEntityBox);
     return bookEntities;
   }
 
   @override
-  Future<List<BookEntity>> fetchNewestBooks() {
-    // TODO: implement fetchNewestBooks
-    throw UnimplementedError();
+  Future<List<BookEntity>> fetchNewestBooks() async {
+    var data = await apiService.get(endPoint: 'volumes?q=computer');
+    List<BookEntity> bookEntities = getBookList(data);
+    saveListDataLocal(values: bookEntities, boxName: AssetsData.kBookEntityBox);
+    return bookEntities;
   }
 
   List<BookEntity> getBookList(Map<String, dynamic> data) {

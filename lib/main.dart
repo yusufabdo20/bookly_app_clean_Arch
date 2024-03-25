@@ -16,6 +16,7 @@ import 'constants.dart';
 
 void main() async {
   // setupServiceLocatorByGetIt();
+  await Hive.initFlutter(); 
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox(AssetsData.kBookEntityBox);
   runApp(const MyApp());
