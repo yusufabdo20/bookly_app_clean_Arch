@@ -18,7 +18,7 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
     List<BookEntity> bookEntities = getBookList(data);
     CachHelper.saveListData(
       values: bookEntities,
-      boxName: AssetsData.kBookEntityBox,
+      boxName: AssetsData.kFeturedBookEntityBox,
     );
     return bookEntities;
   }
@@ -30,7 +30,7 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
     List<BookEntity> bookEntities = getBookList(data);
     CachHelper.saveListData(
       values: bookEntities,
-      boxName: AssetsData.kBookEntityBox,
+      boxName: AssetsData.kNewestBookEntityBox,
     );
     return bookEntities;
   }

@@ -15,9 +15,6 @@ class HomeLocalDataSourceImp extends HomeLocalDataSource {
 
   @override
   List<BookEntity> fetchNewestBooks() {
-    // var box = Hive.box<BookEntity>(AssetsData.kBookEntityBox);
-    // List<BookEntity> localBooks = box.values.toList();
-
     return CachHelper.getData<BookEntity>(boxName: AssetsData.kNewestBookEntityBox);
   }
 }
