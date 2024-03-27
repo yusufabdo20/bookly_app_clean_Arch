@@ -30,7 +30,7 @@ class ServerFailures extends Failures {
 
       case DioExceptionType.unknown:
         if (dioError.message!.contains('Socket')) {
-          return ServerFailures("No Internet Connection 2 ");
+          return ServerFailures("No Internet Connection SocketException 2 ");
         } else {
           return ServerFailures("Try AGAIN");
         }
@@ -44,9 +44,9 @@ class ServerFailures extends Failures {
     } else if (statusCode == 404) {
       return ServerFailures('Your request not found, Please try later!');
     } else if (statusCode == 500) {
-      return ServerFailures('Internal Server error, Please try later');
+      return ServerFailures('Internal Server error, Please try later!');
     } else {
-      return ServerFailures('Opps There was an Error, Please try again');
+      return ServerFailures('Opps There was an Error, Please try later');
     }
   }
 }
