@@ -7,45 +7,54 @@ abstract class Failures {
   );
 }
 
-class ServerError extends Failures {
-  ServerError(super.errMessage);
-  factory ServerError.fromDioError(DioException dioError) {
+class ServerFailures extends Failures {
+  ServerFailures(super.errMessage);
+  factory ServerFailures.fromDioError(DioException dioError) {
     switch (dioError.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerError("Connection Timeout with Api Server");
+        return ServerFailures("Connection Timeout with Api Server");
       case DioExceptionType.sendTimeout:
-        return ServerError("Send Timeout with Api Server");
+        return ServerFailures("Send Timeout with Api Server");
       case DioExceptionType.receiveTimeout:
-        return ServerError("Receive Timeout with Api Server");
+        return ServerFailures("Receive Timeout with Api Server");
       case DioExceptionType.badCertificate:
-        return ServerError("Bad Certificate with Api Server");
+        return ServerFailures("Bad Certificate with Api Server");
       case DioExceptionType.badResponse:
-        return ServerError.fromBadResponse(
+        return ServerFailures.fromBadResponse(
             dioError.response!.statusCode!, dioError.response!.data);
       case DioExceptionType.cancel:
-        return ServerError("CANCEL with Api Server");
+        return ServerFailures("CANCEL with Api Server");
       case DioExceptionType.connectionError:
-        return ServerError("No Internet Connection Error: SocketException 1 ");
+        return ServerFailures(
+            "No Internet Connection Error: SocketException 1 ");
 
       case DioExceptionType.unknown:
         if (dioError.message!.contains('Socket')) {
-          return ServerError("No Internet Connection 2 ");
+          return ServerFailures("No Internet Connection 2 ");
         } else {
-          return ServerError("Try AGAIN");
+          return ServerFailures("Try AGAIN");
         }
       default:
-        return ServerError("DEFAULT ERROR TRY AGIAN LATER ");
+        return ServerFailures("DEFAULT ERROR TRY AGIAN LATER ");
     }
   }
-  factory ServerError.fromBadResponse(int statusCode, dynamic response) {
+  factory ServerFailures.fromBadResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerError(response['error']['message']);
+      return ServerFailures(response['error']['message']);
     } else if (statusCode == 404) {
-      return ServerError('Your request not found, Please try later!');
+      return ServerFailures('Your request not found, Please try later!');
     } else if (statusCode == 500) {
-      return ServerError('Internal Server error, Please try later');
+      return ServerFailures('Internal Server error, Please try later');
     } else {
-      return ServerError('Opps There was an Error, Please try again');
+      return ServerFailures('Opps There was an Error, Please try again');
     }
   }
+}
+
+class CachedFailures extends Failures {
+  CachedFailures(super.errMessage);
+}
+
+class NetworkFailures extends Failures {
+  NetworkFailures(super.errMessage);
 }

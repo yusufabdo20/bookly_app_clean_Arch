@@ -14,22 +14,30 @@ class HomeRepoImp extends HomeRepo {
 
   HomeRepoImp({required this.homeRDS, required this.homeLDS});
   @override
-  Future<Either<Failures, List<BookEntity>>> fetchFeaturedBooks() async{
+  Future<Either<Failures, List<BookEntity>>> fetchFeaturedBooks() async {
     try {
-      var cachedBooks = homeLDS.fetchFeaturedBooks();
-      if (cachedBooks.isNotEmpty) {
-        return right(cachedBooks);
+      List<BookEntity> books = homeLDS.fetchFeaturedBooks();
+      if (books.isNotEmpty) {
+        return right(books);
       }
-      var books = await homeRDS.fetchFeaturedBooks();
+      books = await homeRDS.fetchFeaturedBooks();
       return right(books);
     } catch (e) {
-      return left(ServerError(e.toString()));
+      return left(ServerFailures(e.toString()));
     }
   }
 
   @override
-  Future<Either<Failures, List<BookEntity>>> fetchNewestBooks() {
-    // TODO: implement fetchNewestBooks
-    throw UnimplementedError();
+  Future<Either<Failures, List<BookEntity>>> fetchNewestBooks() async {
+    try {
+      List<BookEntity> books = homeLDS.fetchNewestBooks();
+      if (books.isNotEmpty) {
+        return right(books);
+      }
+      books = await homeRDS.fetchNewestBooks();
+      return right(books);
+    } catch (e) {
+      return left(ServerFailures(e.toString()));
+    }
   }
 }
