@@ -1,7 +1,7 @@
 import 'package:bookly_app/Features/Home/domain/entities/book_entity.dart';
-import 'package:bookly_app/Features/Home/presentation/view_models/featured_books_cubit/featured_books_cubit.dart';
-import 'package:bookly_app/Features/Home/presentation/view_models/newest_books_cubit/newest_books_cubit.dart';
-import 'package:bookly_app/Features/Home/presentation/view_models/similer_books_cubit/cubit/similer_books_cubit.dart';
+import 'package:bookly_app/Features/Home/presentation/manager/featured_books_bloc/featured_books_bloc.dart';
+import 'package:bookly_app/Features/Home/presentation/manager/newest_books_cubit/newest_books_cubit.dart';
+import 'package:bookly_app/Features/Home/presentation/manager/similer_books_cubit/cubit/similer_books_cubit.dart';
 import 'package:bookly_app/core/functions/cach_helper.dart';
 import 'package:bookly_app/core/utils/api_service.dart';
 import 'package:bookly_app/core/utils/app_routing.dart';
@@ -42,7 +42,8 @@ class MyApp extends StatelessWidget {
         //   )..feachFeaturedBooks(),
         // ),
       ],
-      child: MaterialApp.router(
+      child: MaterialApp(
+// home: HomeV,
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: kPrimaryColor,
