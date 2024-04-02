@@ -6,3 +6,7 @@ abstract class NewestBooksEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GetNewestBooksEvent extends NewestBooksEvent {
+  const GetNewestBooksEvent();
+}
